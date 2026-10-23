@@ -1,0 +1,8 @@
+//
+// Created by Rakuvarman Janushka on 23/10/2026.
+//
+
+#ifndef MINIPROJETSHOPFLOW_TYPES_H
+#define MINIPROJETSHOPFLOW_TYPES_H
+
+#endif //MINIPROJETSHOPFLOW_TYPES_H

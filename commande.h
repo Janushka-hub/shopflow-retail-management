@@ -1,0 +1,8 @@
+//
+// Created by Rakuvarman Janushka on 23/10/2026.
+//
+
+#ifndef MINIPROJETSHOPFLOW_COMMANDE_H
+#define MINIPROJETSHOPFLOW_COMMANDE_H
+
+#endif //MINIPROJETSHOPFLOW_COMMANDE_H
