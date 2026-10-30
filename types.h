@@ -55,7 +55,7 @@ typedef struct {
 } LigneCommande;
 
 // 6. Structure Commande
-typedef struct {
+typedef struct Commande {
     int numero;            // Numéro de commande
     int idClient;          // Référence du client propriétaire
     Date dateCommande;     // Date de validation
