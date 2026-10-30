@@ -34,24 +34,21 @@ static void lireChaineClient(const char *message,
         return;
     }
 }
-// Verifier qu'un code postal contient exactement 5 chiffres
+//Verifier qu'un code postal contient exactement 5 chiffres
 static int codePostalValide(const char *code) {
     if (strlen(code) != 5) {
         return 0;
     }
-
     for (int i = 0; i < 5; i++) {
         if (!isdigit((unsigned char)code[i])) {
             return 0;
         }
     }
-
     return 1;
 }
 // Verification simple du format de l'email
 static int emailValide(const char *email) {
     const char *arobase = strchr(email, '@');
-
     if (arobase == NULL || arobase == email) {
         return 0;
     }
@@ -61,7 +58,7 @@ static int emailValide(const char *email) {
            point[1] != '\0' &&
            strchr(arobase + 1, '@') == NULL;
 }
-// Verifier si l'email est deja utilise
+//Verifier si l'email est deja utilise
 static int emailExiste(const Boutique *b, const char *email) {
     for (int i = 0; i < b->nbClients; i++) {
         if (strcmp(b->clients[i].email, email) == 0) {
@@ -77,7 +74,7 @@ void ajouterClient(Boutique *b) {
         printf("Erreur : boutique inexistante.\n");
         return;
     }
-    // Verifier la coherence du tableau des clients
+    //Verifier la coherence du tableau des clients
     if (b->nbClients < 0 ||
         b->capaciteClients < 0 ||
         b->nbClients > b->capaciteClients ||
@@ -85,7 +82,7 @@ void ajouterClient(Boutique *b) {
         printf("Erreur : tableau des clients invalide.\n");
         return;
     }
-    // Verifier le prochain identifiant
+    //Verifier le prochain identifiant
     if (b->idClientSuivant <= 0 ||
         b->idClientSuivant == INT_MAX) {
         printf("Erreur : identifiant client invalide.\n");
@@ -93,7 +90,7 @@ void ajouterClient(Boutique *b) {
     }
     Client nouveau = {0};
 
-    // Attribuer un identifiant unique
+    //Attribuer un identifiant unique
     nouveau.idClient = b->idClientSuivant;
     printf("\n===== AJOUTER UN CLIENT =====\n");
     lireChaineClient("Nom : ",
@@ -122,7 +119,7 @@ void ajouterClient(Boutique *b) {
                      nouveau.telephone,
                      sizeof(nouveau.telephone));
 
-    // Adresse de livraison
+    //Adresse de livraison
     lireChaineClient("Rue : ",
                      nouveau.adresse.rue,
                      sizeof(nouveau.adresse.rue));

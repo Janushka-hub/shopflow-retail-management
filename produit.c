@@ -3,7 +3,7 @@
 #include <string.h>
 #include "produit.h"
 
-// 3.1. Afficher le catalogue
+//Afficher le catalogue
 void afficherCatalogue(const Boutique *b) {
     printf("\n=== CATALOGUE DES PRODUITS (%d / %d) ===\n", b->nbProduits, b->capaciteProduits);
     if (b->nbProduits == 0) {
@@ -18,7 +18,7 @@ void afficherCatalogue(const Boutique *b) {
     }
 }
 
-// 3.2. Ajouter un produit
+//Ajouter un produit
 void ajouterProduit(Boutique *b) {
     if (b->nbProduits >= b->capaciteProduits) {
         b->capaciteProduits *= 2;
@@ -59,7 +59,7 @@ void ajouterProduit(Boutique *b) {
     printf("Entrer le seuil d'alerte : ");
     scanf("%d", &p.seuilAlerte);
 
-    p.actif = 1; // Actif par défaut
+    p.actif = 1;
 
     b->produits[b->nbProduits] = p;
     b->nbProduits++;
@@ -67,15 +67,15 @@ void ajouterProduit(Boutique *b) {
     printf("Produit ajoute avec succes !\n");
 }
 
-// 3.3. Modifier un produit (laissé vide pour l'instant)
+//Modifier un produit (laissé vide pour l'instant)
 void modifierProduit(Boutique *b) {
 }
 
-// 3.4. Supprimer un produit (laissé vide pour l'instant)
+//Supprimer un produit (laissé vide pour l'instant)
 void supprimerProduit(Boutique *b) {
 }
 
-// 3.5. Rechercher un produit (laissé vide pour l'instant)
+//Rechercher un produit (laissé vide pour l'instant)
 void rechercherProduit(const Boutique *b) {
 
 }

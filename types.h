@@ -1,14 +1,14 @@
 #ifndef MINIPROJETSHOPFLOW_TYPES_H
 #define MINIPROJETSHOPFLOW_TYPES_H
 
-// 1. Structure Date
+//Structure Date
 typedef struct {
     int jour;   // 1 à 31
     int mois;   // 1 à 12
     int annee;  // 2000 à 2100
 } Date;
 
-// 2. Structure Adresse
+//Structure Adresse
 typedef struct {
     char rue[80];       // Numéro et libellé de voie
     char ville[50];     // Ville de livraison
@@ -16,7 +16,7 @@ typedef struct {
     char pays[50];      // Pays de livraison
 } Adresse;
 
-// 3. Structure Produit
+//Structure Produit
 typedef struct {
     char reference[12];   // Référence commerciale (SKU)
     char designation[60]; // Libellé du produit
@@ -27,7 +27,7 @@ typedef struct {
     int actif;            // Statut du produit (suppression logique)
 } Produit;
 
-// 4. Structure Ligne de Commande (Doit être avant Commande)
+//Structure Ligne de Commande (Doit être avant Commande)
 typedef struct {
     char refProduit[12];   // Référence du produit commandé
     char designation[60];  // Libellé figé au moment de la vente
@@ -36,7 +36,7 @@ typedef struct {
     float sousTotalHT;     // Quantité x prixUnitaireHT
 } LigneCommande;
 
-// 5. Structure Commande (DOIT ÊTRE PLACÉE AVANT CLIENT)
+//Structure Commande (DOIT ÊTRE PLACÉE AVANT CLIENT)
 typedef struct {
     int numero;            // Numéro de commande
     int idClient;          // Référence du client propriétaire
@@ -57,7 +57,7 @@ typedef struct {
     Adresse adresseLivraison; // Instantané de l'adresse
 } Commande;
 
-// 6. Structure Client (Placee après Commande, donc elle connaît sa structure)
+//Structure Client (Placee après Commande, donc elle connaît sa structure)
 typedef struct {
     int idClient;         // Identifiant du client
     char nom[50];         // Nom de famille
@@ -72,7 +72,7 @@ typedef struct {
     int actif;            // Statut du client
 } Client;
 
-// 7. Structure Boutique (Racine)
+//Structure Boutique (Racine)
 typedef struct {
     char nom[50];          // Nom commercial de la boutique
 

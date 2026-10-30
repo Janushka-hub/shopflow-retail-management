@@ -3,7 +3,7 @@
 #include <string.h>
 #include "initialisation.h"
 
-// Fonction d'initialisation de la boutique (retourne int pour valider le succès)
+//Fonction d'initialisation de la boutique
 int initialiserBoutique(Boutique *b, const char *nomBoutique) {
     if (b == NULL) return 0;
     strncpy(b->nom, nomBoutique, sizeof(b->nom) - 1);
@@ -25,7 +25,7 @@ int initialiserBoutique(Boutique *b, const char *nomBoutique) {
         printf("Erreur fatale : echec de l'allocation memoire pour les produits !\n");
         return 0;
     }
-    // Allouer dynamiquement la mémoire pour les clients
+    //Allouer dynamiquement la mémoire pour les clients
     b->clients = (Client *)malloc(b->capaciteClients * sizeof(Client));
     if (b->clients == NULL) {
         printf("Erreur fatale : echec de l'allocation memoire pour les clients !\n");
@@ -35,7 +35,7 @@ int initialiserBoutique(Boutique *b, const char *nomBoutique) {
     printf("Boutique '%s' initialisee avec succes en memoire !\n", b->nom);
     return 1;
 }
-// Fonction pour libérer toute la mémoire
+//Fonction pour libérer toute la mémoire
 void detruireBoutique(Boutique *b) {
     if (b == NULL) return;
     for (int i = 0; i < b->nbClients; i++) {
