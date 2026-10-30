@@ -18,4 +18,6 @@ add_executable(MiniprojetShopflow
         produit.h
         statistique.h
         utils.h
+        client.h
+        client.c
 )

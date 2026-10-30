@@ -152,7 +152,6 @@ void ajouterClient(Boutique *b) {
     nouveau.commandes = NULL;
     nouveau.actif = 1;
 
-    //Pour agrandir le tableau si necessaire
     if (b->nbClients == b->capaciteClients) {
         size_t nouvelleCapacite;
         if (b->capaciteClients == 0) {
@@ -162,7 +161,6 @@ void ajouterClient(Boutique *b) {
             nouvelleCapacite = (size_t)b->capaciteClients * 2;
         }
 
-        //Pour eviter un depassement de capacite
         if (nouvelleCapacite > INT_MAX ||
             nouvelleCapacite > SIZE_MAX / sizeof(Client)) {
             printf("Erreur : capacite maximale atteinte.\n");
