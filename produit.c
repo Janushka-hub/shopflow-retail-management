@@ -3,7 +3,6 @@
 #include <string.h>
 #include "produit.h"
 
-// 3.1. Afficher le catalogue
 void afficherCatalogue(const Boutique *b) {
     printf("\n=== CATALOGUE DES PRODUITS (%d / %d) ===\n", b->nbProduits, b->capaciteProduits);
     if (b->nbProduits == 0) {
@@ -17,8 +16,6 @@ void afficherCatalogue(const Boutique *b) {
                p.quantiteStock, p.seuilAlerte, p.actif);
     }
 }
-
-// 3.2. Ajouter un produit
 void ajouterProduit(Boutique *b) {
     if (b->nbProduits >= b->capaciteProduits) {
         b->capaciteProduits *= 2;
@@ -29,19 +26,16 @@ void ajouterProduit(Boutique *b) {
         }
         b->produits = temp;
     }
-
     Produit p;
     printf("Entrer la reference du produit (ex: PRD-0001) : ");
     scanf("%s", p.reference);
 
-    // Vérifier l'unicité de la référence
     for (int i = 0; i < b->nbProduits; i++) {
         if (strcmp(b->produits[i].reference, p.reference) == 0) {
             printf("Erreur : Ce produit existe deja !\n");
             return;
         }
     }
-
     printf("Entrer la designation : ");
     getchar(); // Vider le buffer
     fgets(p.designation, sizeof(p.designation), stdin);
@@ -66,8 +60,6 @@ void ajouterProduit(Boutique *b) {
 
     printf("Produit ajoute avec succes !\n");
 }
-
-// 3.3. Modifier un produit
 void modifierProduit(Boutique *b) {
     char ref[20];
     printf("Entrer la reference du produit a modifier : ");
@@ -81,26 +73,19 @@ void modifierProduit(Boutique *b) {
             break;
         }
     }
-
-    // 2. Verifier que le produit existe
     if (index == -1) {
         printf("Erreur : Produit introuvable ou supprime !\n");
         return;
     }
-
     printf("Produit trouve ! Entrez les nouvelles informations :\n");
-
-    // 3. Modifier la designation
     printf("Nouvelle designation : ");
     getchar(); // Vider le buffer
     fgets(b->produits[index].designation, sizeof(b->produits[index].designation), stdin);
     b->produits[index].designation[strcspn(b->produits[index].designation, "\n")] = 0;
 
-    // Modifier la categorie
     printf("Nouvelle categorie : ");
     scanf("%s", b->produits[index].categorie);
 
-    // 4. Modifier et verifier le prix (>= 0)
     do {
         printf("Nouveau prix unitaire HT (>= 0) : ");
         scanf("%f", &b->produits[index].prixUnitaireHT);
@@ -109,7 +94,6 @@ void modifierProduit(Boutique *b) {
         }
     } while (b->produits[index].prixUnitaireHT < 0);
 
-    // 5. Modifier et verifier la quantite (>= 0)
     do {
         printf("Nouvelle quantite en stock (>= 0) : ");
         scanf("%d", &b->produits[index].quantiteStock);
@@ -118,7 +102,6 @@ void modifierProduit(Boutique *b) {
         }
     } while (b->produits[index].quantiteStock < 0);
 
-    // 6. Modifier et verifier le seuil d'alerte (>= 0)
     do {
         printf("Nouveau seuil d'alerte (>= 0) : ");
         scanf("%d", &b->produits[index].seuilAlerte);
@@ -129,35 +112,25 @@ void modifierProduit(Boutique *b) {
 
     printf("Produit modifie avec succes !\n");
 }
-
-// 3.4. Supprimer un produit (suppression logique)
 void supprimerProduit(Boutique *b) {
     char ref[20];
     printf("Entrer la reference du produit a supprimer : ");
     scanf("%s", ref);
-
     int index = -1;
-    // 1. Rechercher le produit par sa reference et verifier s'il est actif
+
     for (int i = 0; i < b->nbProduits; i++) {
         if (strcmp(b->produits[i].reference, ref) == 0 && b->produits[i].actif == 1) {
             index = i;
             break;
         }
     }
-
-    // 2. Verifier que le produit existe
     if (index == -1) {
         printf("Erreur : Produit introuvable ou deja supprime !\n");
         return;
     }
-
-    // 3. Effectuer la suppression logique en modifiant le statut actif
     b->produits[index].actif = 0;
-
     printf("Produit supprime avec succes (suppression logique) !\n");
 }
-
-// 3.5. Rechercher un produit
 void rechercherProduit(const Boutique *b) {
     char ref[20];
     printf("Entrer la reference du produit a rechercher : ");
@@ -178,10 +151,9 @@ void rechercherProduit(const Boutique *b) {
             break;
         }
     }
-
-    // 2. Si le produit n'existe pas ou est supprime
     if (!trouve) {
         printf("Erreur : Produit introuvable ou supprime !\n");
     }
 }
+
 
