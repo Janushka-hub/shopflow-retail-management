@@ -1,9 +1,13 @@
-//
-// Created by Rakuvarman Janushka on 23/10/2026.
-//
+#ifndef UTILS_H
+#define UTILS_H
 
-#ifndef MINIPROJETSHOPFLOW_UTILS_H
-#define MINIPROJETSHOPFLOW_UTILS_H
+// Lire et sécuriser un entier
+int lireEntier(const char *message);
 
-#endif //MINIPROJETSHOPFLOW_UTILS_H
+// Lire et sécuriser un nombre décimal (float)
+float lireFlottant(const char *message);
 
+// Lire une chaîne de caractères en évitant les dépassements
+void lireChaine(const char *message, char *chaine, int tailleMax);
+
+#endif
