@@ -67,9 +67,69 @@ void ajouterProduit(Boutique *b) {
     printf("Produit ajoute avec succes !\n");
 }
 
-// 3.3. Modifier un produit (laissé vide pour l'instant)
+// 3.3. Modifier un produit
 void modifierProduit(Boutique *b) {
+    char ref[20];
+    printf("Entrer la reference du produit a modifier : ");
+    scanf("%s", ref);
+
+    int index = -1;
+    // 1. Rechercher le produit par sa reference et verifier s'il est actif
+    for (int i = 0; i < b->nbProduits; i++) {
+        if (strcmp(b->produits[i].reference, ref) == 0 && b->produits[i].actif == 1) {
+            index = i;
+            break;
+        }
+    }
+
+    // 2. Verifier que le produit existe
+    if (index == -1) {
+        printf("Erreur : Produit introuvable ou supprime !\n");
+        return;
+    }
+
+    printf("Produit trouve ! Entrez les nouvelles informations :\n");
+
+    // 3. Modifier la designation
+    printf("Nouvelle designation : ");
+    getchar(); // Vider le buffer
+    fgets(b->produits[index].designation, sizeof(b->produits[index].designation), stdin);
+    b->produits[index].designation[strcspn(b->produits[index].designation, "\n")] = 0;
+
+    // Modifier la categorie
+    printf("Nouvelle categorie : ");
+    scanf("%s", b->produits[index].categorie);
+
+    // 4. Modifier et verifier le prix (>= 0)
+    do {
+        printf("Nouveau prix unitaire HT (>= 0) : ");
+        scanf("%f", &b->produits[index].prixUnitaireHT);
+        if (b->produits[index].prixUnitaireHT < 0) {
+            printf("Erreur : Le prix ne peut pas etre negatif !\n");
+        }
+    } while (b->produits[index].prixUnitaireHT < 0);
+
+    // 5. Modifier et verifier la quantite (>= 0)
+    do {
+        printf("Nouvelle quantite en stock (>= 0) : ");
+        scanf("%d", &b->produits[index].quantiteStock);
+        if (b->produits[index].quantiteStock < 0) {
+            printf("Erreur : La quantite ne peut pas etre negative !\n");
+        }
+    } while (b->produits[index].quantiteStock < 0);
+
+    // 6. Modifier et verifier le seuil d'alerte (>= 0)
+    do {
+        printf("Nouveau seuil d'alerte (>= 0) : ");
+        scanf("%d", &b->produits[index].seuilAlerte);
+        if (b->produits[index].seuilAlerte < 0) {
+            printf("Erreur : Le seuil d'alerte ne peut pas etre negatif !\n");
+        }
+    } while (b->produits[index].seuilAlerte < 0);
+
+    printf("Produit modifie avec succes !\n");
 }
+
 
 // 3.4. Supprimer un produit (laissé vide pour l'instant)
 void supprimerProduit(Boutique *b) {
@@ -77,3 +137,4 @@ void supprimerProduit(Boutique *b) {
 
 // 3.5. Rechercher un produit (laissé vide pour l'instant)
 void rechercherProduit(const Boutique *b) {
+}
