@@ -1,3 +1,4 @@
+
 #ifndef MINIPROJETSHOPFLOW_TYPES_H
 #define MINIPROJETSHOPFLOW_TYPES_H
 
@@ -27,25 +28,7 @@ typedef struct {
     int actif;            // Statut du produit (suppression logique)
 } Produit;
 
-// Pré-déclaration
-struct Commande;
-
-// 4. Structure Client
-typedef struct {
-    int idClient;         // Identifiant du client
-    char nom[50];         // Nom de famille
-    char prenom[50];      // Prénom
-    char email[80];       // Adresse électronique
-    char telephone[15];   // Téléphone de contact
-    Adresse adresse;      // Adresse de livraison
-    int pointsFidelite;   // Points de fidélité cumulés
-    int nbCommandes;      // Nombre de commandes
-    int capaciteCommandes;// Taille du tableau alloué
-    struct Commande *commandes; // Historique des commandes
-    int actif;            // Statut du client
-} Client;
-
-// 5. Structure Ligne de Commande
+// 4. Structure Ligne de Commande (Doit être avant Commande)
 typedef struct {
     char refProduit[12];   // Référence du produit commandé
     char designation[60];  // Libellé figé au moment de la vente
@@ -54,8 +37,8 @@ typedef struct {
     float sousTotalHT;     // Quantité x prixUnitaireHT
 } LigneCommande;
 
-// 6. Structure Commande
-typedef struct Commande {
+// 5. Structure Commande (DOIT ÊTRE PLACÉE AVANT CLIENT)
+typedef struct {
     int numero;            // Numéro de commande
     int idClient;          // Référence du client propriétaire
     Date dateCommande;     // Date de validation
@@ -74,6 +57,21 @@ typedef struct Commande {
 
     Adresse adresseLivraison; // Instantané de l'adresse
 } Commande;
+
+// 6. Structure Client (Placee après Commande, donc elle connaît sa structure)
+typedef struct {
+    int idClient;         // Identifiant du client
+    char nom[50];         // Nom de famille
+    char prenom[50];      // Prénom
+    char email[80];       // Adresse électronique
+    char telephone[15];   // Téléphone de contact
+    Adresse adresse;      // Adresse de livraison
+    int pointsFidelite;   // Points de fidélité cumulés
+    int nbCommandes;      // Nombre de commandes
+    int capaciteCommandes;// Taille du tableau alloué
+    Commande *commandes;  // Historique des commandes (plus besoin de struct devant)
+    int actif;            // Statut du client
+} Client;
 
 // 7. Structure Boutique (Racine)
 typedef struct {

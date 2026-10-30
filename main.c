@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "types.h"
 
-int main () {
+int main(void) {
     printf("ShopFlow demarre avec succes !\n");
     return 0;
 }
