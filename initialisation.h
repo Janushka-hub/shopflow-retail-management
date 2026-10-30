@@ -19,3 +19,5 @@ void initialiserBoutique(Boutique *b, const char *nomBoutique);
 void detruireBoutique(Boutique *b);
 
 #endif // INITIALISATION_H
+
+k
