@@ -184,4 +184,4 @@ void rechercherProduit(const Boutique *b) {
         printf("Erreur : Produit introuvable ou supprime !\n");
     }
 }
-k
+
