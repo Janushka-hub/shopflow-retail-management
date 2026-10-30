@@ -130,11 +130,57 @@ void modifierProduit(Boutique *b) {
     printf("Produit modifie avec succes !\n");
 }
 
-
-// 3.4. Supprimer un produit (laissé vide pour l'instant)
+// 3.4. Supprimer un produit (suppression logique)
 void supprimerProduit(Boutique *b) {
+    char ref[20];
+    printf("Entrer la reference du produit a supprimer : ");
+    scanf("%s", ref);
+
+    int index = -1;
+    // 1. Rechercher le produit par sa reference et verifier s'il est actif
+    for (int i = 0; i < b->nbProduits; i++) {
+        if (strcmp(b->produits[i].reference, ref) == 0 && b->produits[i].actif == 1) {
+            index = i;
+            break;
+        }
+    }
+
+    // 2. Verifier que le produit existe
+    if (index == -1) {
+        printf("Erreur : Produit introuvable ou deja supprime !\n");
+        return;
+    }
+
+    // 3. Effectuer la suppression logique en modifiant le statut actif
+    b->produits[index].actif = 0;
+
+    printf("Produit supprime avec succes (suppression logique) !\n");
 }
 
-// 3.5. Rechercher un produit (laissé vide pour l'instant)
+// 3.5. Rechercher un produit
 void rechercherProduit(const Boutique *b) {
+    char ref[20];
+    printf("Entrer la reference du produit a rechercher : ");
+    scanf("%s", ref);
+
+    int trouve = 0;
+    // 1. Rechercher le produit par sa reference et verifier s'il est actif
+    for (int i = 0; i < b->nbProduits; i++) {
+        if (strcmp(b->produits[i].reference, ref) == 0 && b->produits[i].actif == 1) {
+            printf("\n--- Details du produit trouve ---\n");
+            printf("Reference : %s\n", b->produits[i].reference);
+            printf("Designation : %s\n", b->produits[i].designation);
+            printf("Categorie : %s\n", b->produits[i].categorie);
+            printf("Prix unitaire HT : %.2f\n", b->produits[i].prixUnitaireHT);
+            printf("Quantite en stock : %d\n", b->produits[i].quantiteStock);
+            printf("Seuil d'alerte : %d\n", b->produits[i].seuilAlerte);
+            trouve = 1;
+            break;
+        }
+    }
+
+    // 2. Si le produit n'existe pas ou est supprime
+    if (!trouve) {
+        printf("Erreur : Produit introuvable ou supprime !\n");
+    }
 }
