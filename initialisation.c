@@ -69,3 +69,4 @@ void detruireBoutique(Boutique *b) {
     printf("Mémoire de la boutique entièrement libérée.\n");
 }=
 
+k
