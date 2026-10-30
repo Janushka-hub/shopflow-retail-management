@@ -17,7 +17,6 @@ void afficherCatalogue(const Boutique *b) {
                p.quantiteStock, p.seuilAlerte, p.actif);
     }
 }
-
 // 3.2. Ajouter un produit
 void ajouterProduit(Boutique *b) {
     if (b->nbProduits >= b->capaciteProduits) {
@@ -29,7 +28,6 @@ void ajouterProduit(Boutique *b) {
         }
         b->produits = temp;
     }
-
     Produit p;
     printf("Entrer la reference du produit (ex: PRD-0001) : ");
     scanf("%s", p.reference);
@@ -41,7 +39,6 @@ void ajouterProduit(Boutique *b) {
             return;
         }
     }
-
     printf("Entrer la designation : ");
     getchar(); // Vider le buffer
     fgets(p.designation, sizeof(p.designation), stdin);
@@ -60,22 +57,114 @@ void ajouterProduit(Boutique *b) {
     scanf("%d", &p.seuilAlerte);
 
     p.actif = 1; // Actif par défaut
-
     b->produits[b->nbProduits] = p;
     b->nbProduits++;
-
     printf("Produit ajoute avec succes !\n");
 }
-
-// 3.3. Modifier un produit (laissé vide pour l'instant)
+// 3.3. Modifier un produit
 void modifierProduit(Boutique *b) {
+    char ref[20];
+    printf("Entrer la reference du produit a modifier : ");
+    scanf("%s", ref);
+    int index = -1;
+    for (int i = 0; i < b->nbProduits; i++) {
+        if (strcmp(b->produits[i].reference, ref) == 0 && b->produits[i].actif == 1) {
+            index = i;
+            break;
+        }
+    }
+    //Verifier que le produit existe
+    if (index == -1) {
+        printf("Erreur : Produit introuvable ou supprime !\n");
+        return;
+    }
+    printf("Produit trouve ! Entrez les nouvelles informations :\n");
+
+    //Modifier la designation
+    printf("Nouvelle designation : ");
+    getchar();
+    fgets(b->produits[index].designation, sizeof(b->produits[index].designation), stdin);
+    b->produits[index].designation[strcspn(b->produits[index].designation, "\n")] = 0;
+
+    printf("Nouvelle categorie : ");
+    scanf("%s", b->produits[index].categorie);
+
+    //Modifier et verifier le prix (>= 0)
+    do {
+        printf("Nouveau prix unitaire HT (>= 0) : ");
+        scanf("%f", &b->produits[index].prixUnitaireHT);
+        if (b->produits[index].prixUnitaireHT < 0) {
+            printf("Erreur : Le prix ne peut pas etre negatif !\n");
+        }
+    } while (b->produits[index].prixUnitaireHT < 0);
+
+    //Modifier et verifier la quantite (>= 0)
+    do {
+        printf("Nouvelle quantite en stock (>= 0) : ");
+        scanf("%d", &b->produits[index].quantiteStock);
+        if (b->produits[index].quantiteStock < 0) {
+            printf("Erreur : La quantite ne peut pas etre negative !\n");
+        }
+    } while (b->produits[index].quantiteStock < 0);
+
+    //Modifier et verifier le seuil d'alerte (>= 0)
+    do {
+        printf("Nouveau seuil d'alerte (>= 0) : ");
+        scanf("%d", &b->produits[index].seuilAlerte);
+        if (b->produits[index].seuilAlerte < 0) {
+            printf("Erreur : Le seuil d'alerte ne peut pas etre negatif !\n");
+        }
+    } while (b->produits[index].seuilAlerte < 0);
+
+    printf("Produit modifie avec succes !\n");
 }
 
-// 3.4. Supprimer un produit (laissé vide pour l'instant)
+//Supprimer un produit (suppression logique)
 void supprimerProduit(Boutique *b) {
+    char ref[20];
+    printf("Entrer la reference du produit a supprimer : ");
+    scanf("%s", ref);
+
+    int index = -1;
+    //Rechercher le produit par sa reference et verifier s'il est actif
+    for (int i = 0; i < b->nbProduits; i++) {
+        if (strcmp(b->produits[i].reference, ref) == 0 && b->produits[i].actif == 1) {
+            index = i;
+            break;
+        }
+    }
+    //Verifier que le produit existe
+    if (index == -1) {
+        printf("Erreur : Produit introuvable ou deja supprime !\n");
+        return;
+    }
+
+    //Effectuer la suppression logique en modifiant le statut actif
+    b->produits[index].actif = 0;
+    printf("Produit supprime avec succes (suppression logique) !\n");
 }
-
-// 3.5. Rechercher un produit (laissé vide pour l'instant)
+//Rechercher un produit
 void rechercherProduit(const Boutique *b) {
-
+    char ref[20];
+    printf("Entrer la reference du produit a rechercher : ");
+    scanf("%s", ref);
+    int trouve = 0;
+    //Rechercher le produit par sa reference et verifier s'il est actif
+    for (int i = 0; i < b->nbProduits; i++) {
+        if (strcmp(b->produits[i].reference, ref) == 0 && b->produits[i].actif == 1) {
+            printf("\n--- Details du produit trouve ---\n");
+            printf("Reference : %s\n", b->produits[i].reference);
+            printf("Designation : %s\n", b->produits[i].designation);
+            printf("Categorie : %s\n", b->produits[i].categorie);
+            printf("Prix unitaire HT : %.2f\n", b->produits[i].prixUnitaireHT);
+            printf("Quantite en stock : %d\n", b->produits[i].quantiteStock);
+            printf("Seuil d'alerte : %d\n", b->produits[i].seuilAlerte);
+            trouve = 1;
+            break;
+        }
+    }
+    //Si le produit n'existe pas ou est supprime
+    if (!trouve) {
+        printf("Erreur : Produit introuvable ou supprime !\n");
+    }
 }
