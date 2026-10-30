@@ -20,4 +20,4 @@ void detruireBoutique(Boutique *b);
 
 #endif // INITIALISATION_H
 
-k
+
