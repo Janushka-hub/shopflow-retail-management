@@ -77,3 +77,5 @@ void supprimerProduit(Boutique *b) {
 
 // 3.5. Rechercher un produit (laissé vide pour l'instant)
 void rechercherProduit(const Boutique *b) {
+
+}
