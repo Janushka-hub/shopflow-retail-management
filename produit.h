@@ -13,3 +13,4 @@ void supprimerProduit(Boutique *b);
 
 void rechercherProduit(const Boutique *b);
 #endif // PRODUIT_H
+k

@@ -104,3 +104,4 @@ void afficherStatistiques(Boutique *b)
     }
     if (!alerteTrouvee) printf("Aucun produit sous le seuil d'alerte.\n");
 }
+k
