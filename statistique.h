@@ -1,9 +1,8 @@
-#ifndef STATISTIQUE_H
-#define STATISTIQUE_H
+//
+// Created by Rakuvarman Janushka on 23/10/2026.
+//
 
-#include "types.h"
+#ifndef MINIPROJETSHOPFLOW_STATISTIQUE_H
+#define MINIPROJETSHOPFLOW_STATISTIQUE_H
 
-// Fonction principale pour afficher toutes les statistiques, alertes et palmarès
-void afficherStatistiquesBoutique(const Boutique *b);
-
-#endif
+#endif //MINIPROJETSHOPFLOW_STATISTIQUE_H
