@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.16)
+project(ShopFlow C)
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD_REQUIRED ON)
+add_compile_options(-Wall -Wextra -pedantic)
+add_executable(ShopFlow main.c produit.c client.c commande.c statistique.c utils.c initialisation.c)
