@@ -1,153 +1,202 @@
-# ShopFlow — E-commerce Management System
+# ShopFlow – Retail Management System
 
-![Language](https://img.shields.io/badge/Language-C11-blue)
-![Build](https://img.shields.io/badge/Build-CMake-064F8C)
+![Language](https://img.shields.io/badge/Language-C-blue)
+![Build](https://img.shields.io/badge/Build-CMake-green)
+![Type](https://img.shields.io/badge/Project-Academic-orange)
 ![Interface](https://img.shields.io/badge/Interface-CLI-lightgrey)
 
-## Overview
+## Project Overview
 
-ShopFlow is a command-line e-commerce management application developed in C as part of the Computer Science program at EFREI Paris.
+ShopFlow is a command-line retail management system developed in C as part of an academic group project at EFREI Paris.
 
-The application simulates the core operations of an online store, including product inventory, customer management, order processing, automated pricing calculations, and sales analytics.
+The application provides an integrated solution for managing products, customers, orders, inventory and business statistics. It focuses on structured programming, modular architecture, data validation and the implementation of retail business logic.
 
-The project focuses on modular programming, dynamic memory management, structured data modeling, and the implementation of business rules in C.
+## Main Features
 
-## Features
+### Product & Inventory Management
 
-### Product Management
-- Add, update, search, and deactivate products.
-- Manage inventory levels and stock valuation.
-- Monitor low-stock alerts.
-- Search products by reference, keyword, category, and price.
+- Add, update and delete products
+- Display the complete product catalog
+- Search products by reference or keyword
+- Advanced filtering by category and maximum price
+- Low-stock alerts based on predefined thresholds
+- Inventory value calculation
 
 ### Customer Management
-- Create and manage customer profiles.
-- Manage contact information and delivery addresses.
-- Access customer order history.
-- Calculate and update loyalty points.
+
+- Add, update and delete customer records
+- Display customer lists and individual profiles
+- Manage customer contact and address information
+- Validate user input
+- Track customer orders and revenue
 
 ### Order Management
-- Create orders containing multiple products.
-- Validate product availability and quantities.
-- Automatically update inventory levels.
-- Manage order status transitions.
-- Cancel orders and restore stock automatically.
-- Calculate discounts, VAT, shipping fees, and final prices.
 
-### Sales Analytics
-- Calculate total, monthly, and annual revenue.
-- Identify the top five best-selling products.
-- Rank customers by generated revenue.
-- Analyze inventory quantities and values by category.
-- Exclude cancelled orders from sales statistics.
+- Create and manage customer orders
+- Add or remove order items
+- Update order status
+- Cancel existing orders
+- Validate product references
+- Calculate order amounts and discounts
+- Update stock and loyalty points upon order cancellation
 
-## Technologies
+### Business Statistics
+
+- Total revenue calculation
+- Monthly and annual revenue analysis
+- Top 5 best-selling products
+- Customer ranking based on revenue
+- Inventory quantity and value by category
+
+## Technologies & Tools
 
 | Technology | Purpose |
 |---|---|
-| C11 | Core application development |
-| CMake | Build configuration |
-| C Standard Library | Memory management, strings, and input validation |
-| CLI | Interactive terminal-based interface |
+| C | Core application development |
+| CMake | Build configuration and compilation |
+| CLion | Development environment |
+| Git | Version control |
+| GitHub | Collaborative development |
+| CLI | Interactive command-line interface |
 
-## Project Architecture
+## Technical Skills Demonstrated
 
-The application follows a modular architecture, separating business logic, data structures, and utility functions.
+- Modular programming in C
+- Separation of source and header files
+- CRUD operations
+- Input validation and error handling
+- Search, filtering and ranking operations
+- Inventory and order management logic
+- Financial calculations and data aggregation
+- Collaborative development using Git and GitHub
 
-| File | Responsibility |
-|---|---|
-| `main.c` | Application entry point and main menu |
-| `types.h` | Shared data structures and constants |
-| `produit.c / .h` | Product and inventory management |
-| `client.c / .h` | Customer management |
-| `commande.c / .h` | Order processing and pricing calculations |
-| `statistique.c / .h` | Sales analytics and rankings |
-| `utils.c / .h` | Input validation, search, and memory allocation |
-| `initialisation.c / .h` | Demonstration data and memory cleanup |
-| `CMakeLists.txt` | Build configuration |
+## Project Structure
 
-## Data Model
+```text
+MiniprojetShopflow/
+├── screenshots/
+├── .gitignore
+├── CMakeLists.txt
+├── README.md
+├── main.c
+├── client.c
+├── client.h
+├── commande.c
+├── commande.h
+├── produit.c
+├── produit.h
+├── statistique.c
+├── statistique.h
+├── initialisation.c
+├── initialisation.h
+└── utils.c
+```
 
-The application is organized around seven interconnected structures:
-
-- `Boutique` — Central store structure.
-- `Produit` — Product information and inventory.
-- `Client` — Customer information and order history.
-- `Commande` — Order details and financial calculations.
-- `LigneCommande` — Individual order items.
-- `Adresse` — Customer and delivery addresses.
-- `Date` — Order dates.
-
-Products, customers, orders, and order items are stored in dynamically allocated arrays that can grow according to application needs.
-
-## Business Rules
-
-### Automatic Discounts
-
-| Order subtotal (excluding VAT) | Discount |
-|---|---:|
-| Below €100 | 0% |
-| €100 – €299.99 | 5% |
-| €300 – €599.99 | 10% |
-| €600 and above | 15% |
-
-- **VAT:** 20%, applied after the discount.
-- **Shipping:** €5.90, free for orders starting at €60 before discount and VAT.
-- **Loyalty program:** One point for every complete €10 of the final order total, including shipping.
-
-Order cancellation automatically restores inventory and updates customer loyalty points.
-
-## Getting Started
+## Installation & Usage
 
 ### Prerequisites
 
-- A C11-compatible compiler, such as GCC or Clang.
-- CMake 3.16 or later.
+- A C compiler (GCC or Clang)
+- CMake
+- Git
 
-### Build and Run
+### Clone the Repository
 
-Open a terminal in the repository directory and execute:
+```bash
+git clone https://github.com/Janushka-hub/MiniprojetShopflow.git
+cd MiniprojetShopflow
+```
+
+### Build the Application
 
 ```bash
 cmake -S . -B build
 cmake --build build
+```
+
+### Run the Application
+
+On macOS or Linux:
+
+```bash
 ./build/ShopFlow
 ```
 
-The application starts with preloaded demonstration data, allowing users to explore its features immediately.
+The application can also be opened, built and executed directly using CLion.
 
-### Main Menu
+## Application Screenshots
 
-```text
-========== SHOPFLOW ==========
-1. Gestion des produits
-2. Gestion des clients
-3. Gestion des commandes
-4. Statistiques
-0. Quitter
-```
+### 1. Main Menu
 
-The application interface is available in French.
+Interactive navigation between the four main application modules.
 
-## Technical Highlights
+![Main Menu](screenshots/main-menu.png)
 
-- Dynamic memory allocation and resizing using `realloc`.
-- Nested structures and pointer manipulation.
-- Modular programming with separate header and source files.
-- Memory cleanup using `free`.
-- Input validation and allocation failure handling.
-- Case-insensitive string comparison.
-- Search and sorting algorithms.
-- Inventory consistency and order lifecycle management.
+### 2. Product Catalog & Stock Alerts
 
-## Current Scope
+Product information, pricing, inventory valuation and low-stock detection.
 
-ShopFlow is an in-memory application. Data is initialized at startup and is not permanently saved after the application closes.
+![Product Catalog](screenshots/product-catalog.png)
 
-This design intentionally focuses on C programming fundamentals, memory management, and business logic without relying on external databases or frameworks.
+### 3. Advanced Product Search
+
+Product filtering based on category and maximum price.
+
+![Advanced Product Search](screenshots/advanced-product-search.png)
+
+### 4. Customer Management
+
+Customer profiles, order history summaries and revenue tracking.
+
+![Customer List](screenshots/customer-list.png)
+
+### 5. Customer Update & Input Validation
+
+Customer information modification, invalid input detection and verification of the updated record.
+
+![Customer Update](screenshots/customer-update-workflow.png)
+
+### 6. Order Creation & Cancellation
+
+Order creation, product reference validation, order cancellation and stock and loyalty point updates.
+
+![Order Management](screenshots/order-creation-and-cancellation.png)
+
+### 7. Revenue Analysis
+
+Revenue calculations for selected monthly or annual periods.
+
+![Revenue Analysis](screenshots/revenue-by-period.png)
+
+### 8. Best-Selling Products
+
+Ranking of the five best-selling products by quantity sold.
+
+![Top Selling Products](screenshots/top-selling-products.png)
+
+### 9. Customer Ranking
+
+Customer ranking based on generated revenue.
+
+![Customer Ranking](screenshots/customer-ranking.png)
+
+### 10. Inventory Statistics
+
+Stock quantity and inventory value grouped by product category.
+
+![Stock by Category](screenshots/stock-by-category.png)
 
 ## Academic Context
 
-Developed as a collaborative academic project for the XTI101 C Programming module at EFREI Paris, 2026.
+- Institution: EFREI Paris
+- Project type: Academic group project
+- Programming language: C
+- Development approach: Collaborative and modular programming
 
-The project demonstrates the practical application of fundamental computer science concepts to an e-commerce management system.
+## Contributors
+
+Developed collaboratively by the project team as part of the Computer Science curriculum at EFREI Paris.
+
+## Project Status
+
+Academic project with implemented core retail management functionalities.
